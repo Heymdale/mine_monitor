@@ -96,9 +96,9 @@ def compare_current_and_last_bad_workers(bad_workers, current_workers):
 
 def log_changed_status(upped_workers, downed_workers):
     if upped_workers:
-        logger.error(f'These workers are back online: {' '.join(upped_workers)}')
+        logger.error(f'These workers are back online: {" ".join(upped_workers)}')
     if downed_workers:
-        logger.error(f'These workers are offline: {' '.join(downed_workers)}')
+        logger.error(f'These workers are offline: {" ".join(downed_workers)}')
 
 
 def check_coin_miners(workers, site, address, coin):
