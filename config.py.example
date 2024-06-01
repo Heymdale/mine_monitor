@@ -1,0 +1,50 @@
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+token = os.getenv('TOKEN')
+chat_id = os.getenv('CHAT_ID')
+telegram_params = {
+    'token': token,
+    'chat_id': chat_id
+}
+
+# Configure miners
+miners = {
+    # The Coin_name will be used in telegram messages, use a name that is convenient for you.
+    'Coin_name': {
+        # Now this script works only with herominers.com,
+        # so change real_coin_name to name of the coin on herominers.com
+        'site': 'https://real_coin_name.herominers.com/api/stats_address',
+        # Enter the address of the wallet you are mining with
+        'address': 'Your_wallet_address',
+        # You must enter the workers' names exactly as they appear on the site.
+        'workers': (
+            'worker1',
+            'worker2',
+            'worker3',
+            'worker4',
+        )
+    },
+    # You can enter several coins, for example I used Monero and Pyrin:
+    'Monero': {
+        'site': 'https://monero.herominers.com/api/stats_address',
+        'address': '82wD7FCqwM8DfcAedZB8QnUaUYAGue4bujWpiP8MBgBbBuXdhjboqLD7tVsrsYLMupWXQ9DUzNX2J6UuzEsUbezRPteZwba',
+        'workers': (
+            'aorus',
+            'Heymdale1',
+            'Legion',
+        )
+    },
+    'Pyrin': {
+        'site': 'https://pyrin.herominers.com/api/stats_address',
+        'address': 'pyrin:qrserlsdqk8flh846plc35tpdesz7tq63mas9n379hu3qj7v6fkqqfj7yaaxq',
+        'workers': (
+            'aorus',
+        )
+    },
+}
+
+if __name__ == '__main__':
+    pass
