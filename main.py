@@ -110,7 +110,9 @@ def check_coin_miners(workers, site, address, coin):
             # Special value -1 is to filter these workers then compare current and last bad workers.
             coin_workers_state[coin][worker] = -1
         return coin_workers_state
-    api_workers_info = json_response['workers']
+    api_workers_info = json_response.get('workers', [])
+    if not api_workers_info:
+        raise Exception('Looks like herominers.com change json response, there is not "workers" field')
     web_workers = {web_worker['name']: int(web_worker['hashrate_1h']) for web_worker in api_workers_info}
     for worker in workers:
         if worker not in web_workers:
