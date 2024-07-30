@@ -113,7 +113,18 @@ def check_coin_miners(workers, site, address, coin):
     api_workers_info = json_response.get('workers', [])
     if not api_workers_info:
         raise Exception('Looks like herominers.com change json response, there is not "workers" field')
-    web_workers = {web_worker['name']: int(web_worker['hashrate_1h']) for web_worker in api_workers_info}
+    #web_workers = {web_worker['name']: int(web_worker['hashrate_1h']) for web_worker in api_workers_info}
+    '''test'''
+    web_workers = {}
+    for web_worker in api_workers_info:
+        name = web_worker['name']
+        try:
+            hashrate = web_worker['hashrate_1h']
+        except KeyError:
+            hashrate = 0
+        '''test'''
+        web_workers[name] = int(hashrate)
+        '''test'''
     for worker in workers:
         if worker not in web_workers:
             logger.error(f'Worker {worker} on {coin} is long time offline or never was online, change config.py')
